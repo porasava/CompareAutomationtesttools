@@ -1,0 +1,17 @@
+describe('TC15AdminCreateNewCustomer', () => {
+  it('TC15 Admin Create New Customer', () => {
+    cy.visit('http://localhost:8044/User/AdminLogin')
+    cy.get('#AdminUsername').type('Tananya1')
+    cy.get('#AdminPassword').type('Tanya123')
+    cy.get(`input[value="Login"]`).click()
+    cy.get(`a[href="/Order/CustomerIndex"]`).click()
+    cy.get(`a[href="/User/AddorEdit"]`).click()
+    cy.get(`#CustomerName`).type("Customer Z")
+    cy.get(`input[value="Create"]`).click()
+    cy.get(`div[class="container body-content"] div a`).click()
+    cy.get('tbody tr:nth-child(2) td:nth-child(1)')
+    .click.toString(`Customer Z`)
+    cy.screenshot()
+   // cy.get(`#logoutForm`).click()
+  })
+})

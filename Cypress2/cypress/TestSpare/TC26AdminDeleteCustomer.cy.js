@@ -1,0 +1,16 @@
+describe('TC26AdminDeleteCustomer', () => {
+  it('TC26 Admin Delete Customer', () => {
+    cy.visit('http://localhost:8044/User/AdminLogin')
+    cy.get('#AdminUsername').type('Tananya1')
+    cy.get('#AdminPassword').type('Tanya123')
+    cy.get(`input[value="Login"]`).click()
+    cy.get(`a[href="/Order/CustomerIndex"]`).click()
+    cy.get(':nth-child(2) > :nth-child(3) > a').click()
+    cy.get(`input[value="Delete"]`).click()
+    cy.get("tbody tr:nth-child(2) td:nth-child(1)")
+    .click.toString(`Customer E`)
+    cy.viewport(1350, 700)
+    cy.screenshot()
+ //   cy.get(`#logoutForm`).click()
+  })
+})

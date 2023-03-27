@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Restaurant.Models.Order>
+
+@{
+    ViewBag.Title = "Order List";
+    if (Session["AdminUserID"] == null)
+    { Response.Redirect("~/User/AdminLogin"); }
+}
+
+<h2>Order List</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinalTotal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PaymentTypeId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerId)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FinalTotal)
+    </td>
+    @*<td>
+        @Html.ActionLink("Delete", "DeleteOrder", new { id = item.OrderId })
+
+    </td>*@
+</tr>
+}
+
+</table>
+
+<li>@Html.ActionLink("Create new order", "Index", "Home")</li>

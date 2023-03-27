@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Restaurant</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            background-color: rgb(249, 239, 182, 0.37);
+        }
+    </style>
+</head>
+<body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+       @*<div class="navbar navbar-expand-sm bg-success navbar-dark navbar-fixed-top">*@
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Restaurant", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Order Here", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Menu", "ItemIndex", "Order")</li>
+                        <li>@Html.ActionLink("Order List", "OrderIndex", "Order")</li>
+                        <li>@Html.ActionLink("Customer List", "CustomerIndex", "Order")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="col-md-offset-2 col-md-10">
+                            @if (Session["AdminUserID"] != null)
+                            {
+                                using (Html.BeginForm("AdminLogout", "User", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+
+                                }
+
+                            }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Restaurant</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

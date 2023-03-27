@@ -1,0 +1,18 @@
+describe('TC16AdminAddOrder', () => {
+  it('TC16 Admin Add Order', () => {
+    cy.visit('http://localhost:8044/User/AdminLogin')
+    cy.get('#AdminUsername').type('Tananya1')
+    cy.get('#AdminPassword').type('Tanya123')
+    cy.get(`input[value="Login"]`).click()
+    cy.get(`select[name="Customer"]`).select("Customer Z")
+    cy.get(`select[name="Item"]`).select("1 - Signature Tonkotsu Chashu Ramen")
+    cy.get(`#txtQuantity`).clear("")
+    cy.get('#txtQuantity').type('2')
+    cy.get(`#btnAddToList`).click()
+    cy.get('td:nth-child(6)')
+    .click.toString(`17.80`)
+    cy.viewport(1350, 700)
+    cy.screenshot()
+ //   cy.get(`#logoutForm`).click()
+  })
+})

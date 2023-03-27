@@ -1,0 +1,1688 @@
+{
+  "stats": {
+    "suites": 28,
+    "tests": 28,
+    "passes": 28,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-11-16T12:51:03.147Z",
+    "end": "2022-11-16T12:52:31.827Z",
+    "duration": 88680,
+    "testsRegistered": 28,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b4946672-4c7f-4fde-90ec-9d078779fab7",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "47cbe886-dad1-4b30-8a51-423243ae291b",
+          "title": "TC1AdminAddProductFailed",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC1AdminAddProductFailed\"",
+              "fullTitle": "TC1AdminAddProductFailed \"after each\" hook in \"TC1AdminAddProductFailed\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "7404f499-52a2-42a1-972c-8f69145ce354",
+              "parentUUID": "47cbe886-dad1-4b30-8a51-423243ae291b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC1 Failed to add product",
+              "fullTitle": "TC1AdminAddProductFailed TC1 Failed to add product",
+              "timedOut": false,
+              "duration": 8678,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://192.168.3.111:8042/User/AdminLogin\");\n            driver.manage().window().maximize();\n            await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya\");\n            await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n            await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n            await driver.findElement(By.css(`a[href=\"/Item\"]`)).click();\n            await driver.findElement(By.xpath(`//select[@id=\"CategoryId\"]`)).click();\n            await driver.findElement(By.xpath(`//select[@id=\"CategoryId\"]/option[@value='        14']`)).click();\n            await driver.findElement(By.css(`input[name=\"ItemCode\"]`)).sendKeys(\"Item Code\");\n            await driver.findElement(By.css(`input[name=\"ItemName\"]`)).sendKeys(\"Item Name\");\n            await driver.findElement(By.css(`input[name=\"Description\"]`)).sendKeys(\"Description\");\n            await driver.findElement(By.css(`input[value=\"0\"]`)).clear(\"\");\n            await driver.findElement(By.css(`input[value=\"0\"]`)).sendKeys(\"2000\");\n      \n                await driver.findElement(By.xpath(`//input[@id=\"btnSave\"]`)).click();\n            await driver.sleep(500); \n        try{\n            await driver.findElement(By.linkText('There is some problem to add Item')).click();\n                    // Wait for the alert to be displayed\n            await driver.wait(until.alertIsPresent());\n                        // Store the alert in a variable\n            let alert = await driver.switchTo().alert();\n                        //Store the alert text in a variable\n            let alertText = await alert.getText();\n                        //Press the OK button\n            await alert.accept();\n        }catch(err2) {\n            console.log(\"Error2: \" + err2);\n            \n        };\n        await driver.findElement(By.css(`a[href=\"/Product\"]`)).click();\n/*         await driver.sleep(500);  */\n        //assert\n        let todoText = await driver.findElement(By.css(\"tbody tr:nth-child(2) td:nth-child(3)\")).getText().then(function(value){\n            return value\n        });\n        assert.strictEqual(todoText,\"Bravecto\"); \n        await driver.takeScreenshot().then(\n            function (image) {\n                require('fs').writeFileSync('./result/TC1AdminAddProductFailed.png', image, 'base64')\n            });\n                try {\n                     var _height = 0, _width = 0, _left = 0, _top = 0;\n                     driver.findElement(By.css('#ItemPrice'))\n                .getLocation().then(location => {\n                    _left = location.x;\n                    _top = location.y;\n                });\n            driver.findElement(By.css('#ItemPrice'))\n                .getSize().then(size => {\n                    _width = size.width;\n                    _height = size.height;\n                });               \n            (async function () {\n                         await driver.sleep(5000);\n                         sharp('image_li6.png')\n                    .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                    .toFile('image_li6_crop.png')\n                    .then(function (new_file_info) {\n                        console.log(\"Image cropped and saved\");\n                    })\n                    .catch(function (err) {\n                        if (err) console.log(err);\n                    });\n                     }());\n        }\n        catch (err) {\n            console.log(\"Error: \" + err);\n        };\n                  //  await driver.quit();",
+              "err": {},
+              "uuid": "3568abfb-cce2-48d2-8453-4aa05e818c32",
+              "parentUUID": "47cbe886-dad1-4b30-8a51-423243ae291b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3568abfb-cce2-48d2-8453-4aa05e818c32"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8678,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "c755513b-deb5-4e33-b8fb-44d789bd8286",
+          "title": "TC2AdminAddProductSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC2AdminAddProductSuccess\"",
+              "fullTitle": "TC2AdminAddProductSuccess \"after each\" hook in \"TC2AdminAddProductSuccess\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "e82e65e7-03b3-4c17-b85f-a2e60fc21645",
+              "parentUUID": "c755513b-deb5-4e33-b8fb-44d789bd8286",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC2 success to added a product",
+              "fullTitle": "TC2AdminAddProductSuccess TC2 success to added a product",
+              "timedOut": false,
+              "duration": 4692,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://192.168.3.111:8042/User/AdminLogin\");\ndriver.manage().window().maximize();\nawait driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya\");\nawait driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\nawait driver.findElement(By.css(`input[value=\"Login\"]`)).click();\nawait driver.findElement(By.css(`a[href=\"/Item\"]`)).click();\nawait driver.findElement(By.xpath(`//select[@id=\"CategoryId\"]`)).click();\nawait driver.findElement(By.xpath(`//select[@id=\"CategoryId\"]/option[@value='        14']`)).click();\nawait driver.findElement(By.css(`input[name=\"ItemCode\"]`)).sendKeys(\"Adidas 001\");\nawait driver.findElement(By.css(`input[name=\"ItemName\"]`)).sendKeys(\"Adidas\");\nawait driver.findElement(By.css(`input[name=\"Description\"]`)).sendKeys(\"Adidas 001\");\nawait driver.findElement(By.css(`input[value=\"0\"]`)).clear(\"\");\nawait driver.findElement(By.css(`input[value=\"0\"]`)).sendKeys(\"200\");\ntry{\n    await driver.findElement(By.xpath(`/html[1]/body[1]/div[2]/div[1]/div[6]/div[1]/input[1]`))\n    .sendKeys(__dirname+\"\\\\adidas_shoe.jfif\");\n       } catch (error){\n   console.log(error);\n   }\n/*    await driver.findElement(By.xpath(`//input[@id=\"btnSave\"]`)).click(); */\nawait driver.findElement(By.xpath(`//input[@id=\"btnSave\"]`)).click();\nawait driver.sleep(2000);\ntry{\nawait driver.findElement(By.linkText('Item is added Successfully')).click();\n// Wait for the alert to be displayed\nawait driver.wait(until.alertIsPresent());\n    // Store the alert in a variable\nlet alert = await driver.switchTo().alert();\n    //Store the alert text in a variable\nlet alertText = await alert.getText();\n    //Press the OK button\nawait alert.accept();\n}catch(err2) {\nconsole.log(\"Error2: \" + err2);\n};\nawait driver.findElement(By.css(`a[href=\"/Product\"]`)).click();\n    //assert\n    let todoText = await driver.findElement(By.xpath(\"//tbody/tr[2]/td[2]\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Adidas 001\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC2AdminAddProductSuccess.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('#ItemPrice'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('#ItemPrice'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    \n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n   // await driver.quit();",
+              "err": {},
+              "uuid": "723d8b1a-5acc-45be-aae8-42378b250b70",
+              "parentUUID": "c755513b-deb5-4e33-b8fb-44d789bd8286",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "723d8b1a-5acc-45be-aae8-42378b250b70"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4692,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "ca037246-a156-4a8e-b4db-eb4a70190cdb",
+          "title": "TC3AdminDeleteProductSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC3AdminDeleteProductSuccess\"",
+              "fullTitle": "TC3AdminDeleteProductSuccess \"after each\" hook in \"TC3AdminDeleteProductSuccess\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "b1ac333b-b8a3-456c-9859-cb0ee58bda7a",
+              "parentUUID": "ca037246-a156-4a8e-b4db-eb4a70190cdb",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC3 success to deleted a product",
+              "fullTitle": "TC3AdminDeleteProductSuccess TC3 success to deleted a product",
+              "timedOut": false,
+              "duration": 1886,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042/User/AdminLogin\");\nawait driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya\");\nawait driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\nawait driver.findElement(By.css(`input[value=\"Login\"]`)).click();\nawait driver.findElement(By.xpath(`//a[normalize-space()=\"Item List\"]`)).click();\nawait driver.findElement(By.xpath(`(//a[contains(text(),'Delete')])[1]`)).click();\nawait driver.findElement(By.css(`input[value=\"Delete\"]`)).click();\n/* Verify product is gone!! */\n/*     await driver.quit(); */\n} catch (error){\nconsole.log(error);\n}\nawait driver.findElement(By.css(`a[href=\"/Product\"]`)).click();\n/*         await driver.sleep(500);  */\n    //assert\n    let todoText = await driver.findElement(By.css(\"tbody tr:nth-child(2) td:nth-child(3)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Bravecto\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC3AdminDeleteProductSuccess.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error: \" + err);\n};\n//await driver.quit();",
+              "err": {},
+              "uuid": "ba7dc632-7ac6-4b1c-a7d5-3cf5fca5e568",
+              "parentUUID": "ca037246-a156-4a8e-b4db-eb4a70190cdb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ba7dc632-7ac6-4b1c-a7d5-3cf5fca5e568"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1886,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "4131cbe4-8d64-4158-810d-d2bebca9920e",
+          "title": "TC4CutomerRegisterFailed",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC4CutomerRegisterFailed\"",
+              "fullTitle": "TC4CutomerRegisterFailed \"after each\" hook in \"TC4CutomerRegisterFailed\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "7e8da0d7-6a7c-4f85-8970-296c970f6636",
+              "parentUUID": "4131cbe4-8d64-4158-810d-d2bebca9920e",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC4 A Cutomer Register Failed",
+              "fullTitle": "TC4CutomerRegisterFailed TC4 A Cutomer Register Failed",
+              "timedOut": false,
+              "duration": 2182,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042\");\nawait driver.manage().window().maximize();\nawait driver.findElement(By.css(`#loginlink`)).click();\nawait driver.findElement(By.xpath(`(//a[normalize-space()='Customer Register'])[1]`)).click();\nawait driver.findElement(By.css(`#FirstName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#LastName`)).sendKeys(\"AsaTest\")\nawait driver.findElement(By.css(`#UserName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#Password`)).sendKeys(\"1234\")\nawait driver.findElement(By.css(`#ConfirmPassword`)).sendKeys(\"12345\")\nawait driver.findElement(By.css(`#Email`)).sendKeys(\"AsaTest@hotmail.com\")\nawait driver.findElement(By.xpath(`//input[@value=\"Submit\"]`)).click();\n/* Verify product is gone!! */\n/*     await driver.quit(); */\n} catch (error){\nconsole.log(\"Error before Screenshot: \" +error);\n}\n    //assert\n    let todoText = await driver.findElement(By.css(\"#ConfirmPassword-error\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"'Confirm Password' and 'Password' do not match.\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC4CutomerRegisterFailed.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.css('label[for=\"FirstName\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.css('label[for=\"FirstName\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(\"Error inside Screenshot: \"+err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error Screenshot: \" + err);\n};\n//await driver.quit();",
+              "err": {},
+              "uuid": "9bdb546f-28ff-4634-8f59-39c6b153d9b9",
+              "parentUUID": "4131cbe4-8d64-4158-810d-d2bebca9920e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9bdb546f-28ff-4634-8f59-39c6b153d9b9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2182,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "8c6916e9-48bd-4c17-aad0-ccc44f8f3a53",
+          "title": "TC5CutomerRegisterSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC5CutomerRegisterSuccess\"",
+              "fullTitle": "TC5CutomerRegisterSuccess \"after each\" hook in \"TC5CutomerRegisterSuccess\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "0484be92-c91e-4dab-97ff-46bb90e7afab",
+              "parentUUID": "8c6916e9-48bd-4c17-aad0-ccc44f8f3a53",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC5 A Cutomer Register Success",
+              "fullTitle": "TC5CutomerRegisterSuccess TC5 A Cutomer Register Success",
+              "timedOut": false,
+              "duration": 2259,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042\");\nawait driver.findElement(By.css(`#loginlink`)).click();\nawait driver.findElement(By.xpath(`(//a[normalize-space()='Customer Register'])[1]`)).click();\nawait driver.findElement(By.css(`#FirstName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#LastName`)).sendKeys(\"AsaTest\")\nawait driver.findElement(By.css(`#UserName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#Password`)).sendKeys(\"1234\")\nawait driver.findElement(By.css(`#ConfirmPassword`)).sendKeys(\"1234\")\nawait driver.findElement(By.css(`#Email`)).sendKeys(\"AsaTest@hotmail.com\")\nawait driver.findElement(By.css(`input[value=\"Submit\"]`)).click();\n/* Verify product is gone!! */\n/*     await driver.quit(); */\n} catch (error){\nconsole.log(error);\n}\n    //assert\n    let todoText = await driver.findElement(By.css(\".label-success\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Registration successful.\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC5CutomerRegisterSuccess.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.xpath('//label[normalize-space()=\"Email\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.xpath('//label[normalize-space()=\"Email\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error: \" + err);\n};\n//await driver.quit();",
+              "err": {},
+              "uuid": "a540f191-f189-451e-892d-fbca0812bb0c",
+              "parentUUID": "8c6916e9-48bd-4c17-aad0-ccc44f8f3a53",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a540f191-f189-451e-892d-fbca0812bb0c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2259,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "45b91292-4df6-402e-9860-bc9480bc285e",
+          "title": "TC6CutomerLoginFailed",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC6CutomerLoginFailed\"",
+              "fullTitle": "TC6CutomerLoginFailed \"after each\" hook in \"TC6CutomerLoginFailed\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "e21a5cab-8126-4cb9-95af-7987b9e995d3",
+              "parentUUID": "45b91292-4df6-402e-9860-bc9480bc285e",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC6 A Cutomer Login Failed",
+              "fullTitle": "TC6CutomerLoginFailed TC6 A Cutomer Login Failed",
+              "timedOut": false,
+              "duration": 1526,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042\");\nawait driver.manage().window().maximize();\nawait driver.findElement(By.css(`#loginlink`)).click();\nawait driver.findElement(By.css(`#UserName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#Password`)).sendKeys(\"12345\")\nawait driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n/* Verify product is gone!! */\n/*     await driver.quit(); */\n} catch (error){\nconsole.log(error);\n}\n    //assert\n    let todoText = await driver.findElement(By.css(\".field-validation-error\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Wrong Username or Password\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC6CutomerLoginFailed.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error: \" + err);\n};\n//await driver.quit();",
+              "err": {},
+              "uuid": "2182a2c5-78f6-47c3-b5ee-280a9ab0292f",
+              "parentUUID": "45b91292-4df6-402e-9860-bc9480bc285e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2182a2c5-78f6-47c3-b5ee-280a9ab0292f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1526,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "c37d119e-fc5c-4aef-9413-ea54399ed882",
+          "title": "TC7CutomerLoginSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC7CutomerLoginSuccess\"",
+              "fullTitle": "TC7CutomerLoginSuccess \"after each\" hook in \"TC7CutomerLoginSuccess\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "6821cedb-85a4-44ef-bb25-aabbbb806f70",
+              "parentUUID": "c37d119e-fc5c-4aef-9413-ea54399ed882",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC7 A Cutomer Login success",
+              "fullTitle": "TC7CutomerLoginSuccess TC7 A Cutomer Login success",
+              "timedOut": false,
+              "duration": 2200,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042\");\nawait driver.findElement(By.css(`#loginlink`)).click();\nawait driver.findElement(By.css(`#UserName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#Password`)).sendKeys(\"1234\")\nawait driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n/* Verify product is gone!! */\n/*     await driver.quit(); */\n} catch (error){\nconsole.log(error);\n}\n    //assert\n    let todoText = await driver.findElement(By.css(\".text-center\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Pet Product List\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC7CutomerLoginSuccess.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error: \" + err);\n};\nawait driver.findElement(By.xpath(`//a[normalize-space()=\"Log Out\"]`)).click();\n//await driver.quit();",
+              "err": {},
+              "uuid": "aa2fb80c-d733-421d-865f-380d9b54ffc8",
+              "parentUUID": "c37d119e-fc5c-4aef-9413-ea54399ed882",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "aa2fb80c-d733-421d-865f-380d9b54ffc8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2200,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "ef671efe-1840-4744-8ec8-08a750f6dc00",
+          "title": "TC8CutomerAddProductToCartSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC8CutomerAddProductToCartSuccess\"",
+              "fullTitle": "TC8CutomerAddProductToCartSuccess \"after each\" hook in \"TC8CutomerAddProductToCartSuccess\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "8455e351-09c5-4317-b322-bbf7326c9076",
+              "parentUUID": "ef671efe-1840-4744-8ec8-08a750f6dc00",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC8 Cutomer Added Product To CartSuccess",
+              "fullTitle": "TC8CutomerAddProductToCartSuccess TC8 Cutomer Added Product To CartSuccess",
+              "timedOut": false,
+              "duration": 3071,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042\");\ndriver.manage().window().maximize();\n/*     driver.viewport(1350, 700) */\n /*    driver.document.body.style.zoom('0.8'); */\n/*     js.executeScript(document.body.style.transform='scale(0.8, 0.8)'); */\n/* js.executeScript(\"document.body.style.zoom='110%'\");  */\nawait driver.findElement(By.css(`#loginlink`)).click();\nawait driver.findElement(By.css(`#UserName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#Password`)).sendKeys(\"1234\")\nawait driver.findElement(By.css(`input[value=\"Login\"]`)).click();\nawait driver.sleep(1000);\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[1]`)).click();\n/* Verify product is gone!! */\n/*     await driver.quit(); */\n} catch (error){\nconsole.log(error);\n}\n    //assert\n    let todoText = await driver.findElement(By.xpath(`//a[@id=\"cartItem\"]`)).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Cart(1)\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC8CutomerAddProductToCartSuccess.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error: \" + err);\n};\nawait driver.findElement(By.xpath(`//a[normalize-space()=\"Log Out\"]`)).click();\n//await driver.quit();",
+              "err": {},
+              "uuid": "f9dd4983-04d9-4169-98dc-cf22bacda9fe",
+              "parentUUID": "ef671efe-1840-4744-8ec8-08a750f6dc00",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f9dd4983-04d9-4169-98dc-cf22bacda9fe"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3071,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "cd683d39-7f1e-40ba-9bd4-35bdf6de28ec",
+          "title": "TC9CutomerAddProductsToCartSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC9CutomerAddProductsToCartSuccess\"",
+              "fullTitle": "TC9CutomerAddProductsToCartSuccess \"after each\" hook in \"TC9CutomerAddProductsToCartSuccess\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "e1ce3164-63aa-4810-8ad0-a1e0707d59dc",
+              "parentUUID": "cd683d39-7f1e-40ba-9bd4-35bdf6de28ec",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC9 Cutomer Added Products To CartSuccess",
+              "fullTitle": "TC9CutomerAddProductsToCartSuccess TC9 Cutomer Added Products To CartSuccess",
+              "timedOut": false,
+              "duration": 2051,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042\");\nawait driver.findElement(By.css(`#loginlink`)).click();\nawait driver.findElement(By.css(`#UserName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#Password`)).sendKeys(\"1234\")\nawait driver.findElement(By.css(`input[value=\"Login\"]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[1]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[2]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[3]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[4]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[4]`)).click();\n/* Verify product is gone!! */\n/*     await driver.quit(); */\n} catch (error){\nconsole.log(error);\n}\n    //assert\n    let todoText = await driver.findElement(By.css(`#cartItem`)).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Cart(4)\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC9CutomerAddProductsToCartSuccess.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error: \" + err);\n};\nawait driver.findElement(By.xpath(`//a[normalize-space()=\"Log Out\"]`)).click();\n//await driver.quit();",
+              "err": {},
+              "uuid": "8d125924-a800-473d-9208-2aa46b6f34c7",
+              "parentUUID": "cd683d39-7f1e-40ba-9bd4-35bdf6de28ec",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8d125924-a800-473d-9208-2aa46b6f34c7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2051,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "158e3593-cfd7-4915-baa1-8e9a7c267c25",
+          "title": "TC10CheckCartPage",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC10CheckCartPage\"",
+              "fullTitle": "TC10CheckCartPage \"after each\" hook in \"TC10CheckCartPage\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "f32ae4e3-a056-4e4c-9514-d71c869baba3",
+              "parentUUID": "158e3593-cfd7-4915-baa1-8e9a7c267c25",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC10 Check Cart Page",
+              "fullTitle": "TC10CheckCartPage TC10 Check Cart Page",
+              "timedOut": false,
+              "duration": 3250,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042\");\nawait driver.findElement(By.css(`#loginlink`)).click();\nawait driver.findElement(By.css(`#UserName`)).sendKeys(\"TananyaTest\")\nawait driver.findElement(By.css(`#Password`)).sendKeys(\"1234\")\nawait driver.findElement(By.css(`input[value=\"Login\"]`)).click();\nawait driver.sleep(1000);\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[1]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[2]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[3]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[4]`)).click();\nawait driver.findElement(By.xpath(`(//input[@id='btnAddToCart'])[4]`)).click();\nawait driver.findElement(By.xpath(`//a[@id=\"cartItem\"]`)).click();\n/* Verify product is gone!! */\n/*     await driver.quit(); */\n} catch (error){\nconsole.log(error);\n}\n    //assert\n    let todoText = await driver.findElement(By.css(\"tbody tr td:nth-child(2) h3:nth-child(1)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"116.00 NZD\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC10CheckCartPage.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error: \" + err);\n};\nawait driver.findElement(By.xpath(`//a[normalize-space()=\"Log Out\"]`)).click();\n//await driver.quit();",
+              "err": {},
+              "uuid": "330a7e50-35bd-48ba-87df-31257a3409b1",
+              "parentUUID": "158e3593-cfd7-4915-baa1-8e9a7c267c25",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "330a7e50-35bd-48ba-87df-31257a3409b1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3250,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "36930cc5-78c4-4abb-9d9e-3c1ea3ca95e8",
+          "title": "TC11CutomerLogoutSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC11CutomerLogoutSuccess\"",
+              "fullTitle": "TC11CutomerLogoutSuccess \"after each\" hook in \"TC11CutomerLogoutSuccess\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "0474327f-6464-48fa-ad66-c37416564503",
+              "parentUUID": "36930cc5-78c4-4abb-9d9e-3c1ea3ca95e8",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC11 Cutomer Logout Success",
+              "fullTitle": "TC11CutomerLogoutSuccess TC11 Cutomer Logout Success",
+              "timedOut": false,
+              "duration": 1565,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\n    await driver.get(\"http://192.168.3.111:8042\");\n    await driver.findElement(By.css(`#loginlink`)).click();\n    await driver.findElement(By.css(`#UserName`)).sendKeys(\"TananyaTest\")\n    await driver.findElement(By.css(`#Password`)).sendKeys(\"1234\")\n    await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\nawait driver.findElement(By.xpath(`//a[normalize-space()=\"Log Out\"]`)).click();\n/* Verify product is gone!! */\n        /*     await driver.quit(); */\n        } catch (error){\nconsole.log(error);\n        }\n    //assert\n    let todoText = await driver.findElement(By.xpath(`//h2[normalize-space()=\"Customer Login\"]`)).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Customer Login\"); \n        await driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC11CutomerLogoutSuccess.png', image, 'base64')\n});\n        try {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.css('input[value=\"0\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n        }\n        catch (err) {\nconsole.log(\"Error: \" + err);\n        };\n        //await driver.quit();",
+              "err": {},
+              "uuid": "c392bca1-9bb4-4f7d-9ec8-501930b693d1",
+              "parentUUID": "36930cc5-78c4-4abb-9d9e-3c1ea3ca95e8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c392bca1-9bb4-4f7d-9ec8-501930b693d1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1565,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "ae3cee97-38f2-4851-bb99-54c72387fc04",
+          "title": "TC12AdminDeleteCustomerSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC01-12.js",
+          "file": "\\test\\TC01-12.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC12AdminDeleteCustomerSuccess\"",
+              "fullTitle": "TC12AdminDeleteCustomerSuccess \"after each\" hook in \"TC12AdminDeleteCustomerSuccess\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "fe5118e8-6258-4b4a-8028-fce07b79a72a",
+              "parentUUID": "ae3cee97-38f2-4851-bb99-54c72387fc04",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC12 Admin Deleted Customer Success",
+              "fullTitle": "TC12AdminDeleteCustomerSuccess TC12 Admin Deleted Customer Success",
+              "timedOut": false,
+              "duration": 2633,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try{\nawait driver.get(\"http://192.168.3.111:8042/User/AdminLogin\");\nawait driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya\");\nawait driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\nawait driver.findElement(By.css(`input[value=\"Login\"]`)).click();\nawait driver.findElement(By.css(`a[href=\"/User/CustomerList\"]`)).click();\nawait driver.findElement(By.xpath(`(//a[contains(text(),'Delete')])[2]`)).click();\nawait driver.findElement(By.css(`input[value=\"Delete\"]`)).click();\nawait driver.sleep(500);\n} catch (error){\nconsole.log(error);\n}\n    //assert\n    let todoText = await driver.findElement(By.xpath(`//h2[normalize-space()=\"Customer List\"]`)).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Customer List\"); \nawait driver.takeScreenshot().then(\nfunction (image) {\n    require('fs').writeFileSync('./result/TC12AdminDeleteCustomerSuccess.png', image, 'base64')\n});\ntry {\nvar _height = 0, _width = 0, _left = 0, _top = 0;\ndriver.findElement(By.xpath('//th[normalize-space()=\"CustomerId\"]'))\n    .getLocation().then(location => {\n        _left = location.x;\n        _top = location.y;\n    });\ndriver.findElement(By.xpath('//th[normalize-space()=\"CustomerId\"]'))\n    .getSize().then(size => {\n        _width = size.width;\n        _height = size.height;\n    });\n(async function () {\n    await driver.sleep(5000);\n    sharp('image_li6.png')\n        .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n        .toFile('image_li6_crop.png')\n        .then(function (new_file_info) {\n            console.log(\"Image cropped and saved\");\n        })\n        .catch(function (err) {\n            if (err) console.log(err);\n        });\n}());\n}\ncatch (err) {\nconsole.log(\"Error: \" + err);\n};\nawait driver.findElement(By.xpath(`//a[normalize-space()=\"Log Out\"]`)).click();\nawait driver.quit();",
+              "err": {},
+              "uuid": "b893baef-b12b-4170-bbf4-ab2108ed4343",
+              "parentUUID": "ae3cee97-38f2-4851-bb99-54c72387fc04",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b893baef-b12b-4170-bbf4-ab2108ed4343"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2633,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "c98d8db5-16a2-4509-ba69-d037a505512e",
+          "title": "TC13AdminLoginSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC13-20.js",
+          "file": "\\test\\TC13-20.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC13AdminLoginSuccess\"",
+              "fullTitle": "TC13AdminLoginSuccess \"after each\" hook in \"TC13AdminLoginSuccess\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "734bf9de-aca1-49ef-9d2e-45e3076c171b",
+              "parentUUID": "c98d8db5-16a2-4509-ba69-d037a505512e",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC13 Admin Login Success",
+              "fullTitle": "TC13AdminLoginSuccess TC13 Admin Login Success",
+              "timedOut": false,
+              "duration": 2097,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n            await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n            await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n            await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n           \n            /*         await driver.sleep(500);  */\n        //assert\n        let todoText = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(4) > legend:nth-child(1)\")).getText().then(function(value){\n            return value\n        });\n        assert.strictEqual(todoText,\"Restaurant\"); \n        await driver.takeScreenshot().then(\n            function (image) {\n                require('fs').writeFileSync('./result/TC13AdminLoginSuccess.png', image, 'base64')\n            });\n                try {\n                     var _height = 0, _width = 0, _left = 0, _top = 0;\n                     driver.findElement(By.css('#Customer'))\n                .getLocation().then(location => {\n                    _left = location.x;\n                    _top = location.y;\n                });\n            driver.findElement(By.css('#Customer'))\n                .getSize().then(size => {\n                    _width = size.width;\n                    _height = size.height;\n                });               \n            (async function () {\n                         await driver.sleep(5000);\n                         sharp('image_li6.png')\n                    .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                    .toFile('image_li6_crop.png')\n                    .then(function (new_file_info) {\n                        console.log(\"Image cropped and saved\");\n                    })\n                    .catch(function (err) {\n                        if (err) console.log(err);\n                    });\n                     }());\n        }\n        catch (err) {\n            console.log(\"Error: \" + err);\n        };\n        await driver.findElement(By.css(`#logoutForm`)).click();\n                  //  await driver.quit();",
+              "err": {},
+              "uuid": "6094e036-5b1f-4f2b-abc3-8455fb2f3a40",
+              "parentUUID": "c98d8db5-16a2-4509-ba69-d037a505512e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6094e036-5b1f-4f2b-abc3-8455fb2f3a40"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2097,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "81efc539-4106-48ae-b426-4f95679ace58",
+          "title": "TC14AdminAddNewMenu",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC13-20.js",
+          "file": "\\test\\TC13-20.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC14AdminAddNewMenu\"",
+              "fullTitle": "TC14AdminAddNewMenu \"after each\" hook in \"TC14AdminAddNewMenu\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "2478af56-7b1d-47e2-9073-91ef433ae0a0",
+              "parentUUID": "81efc539-4106-48ae-b426-4f95679ace58",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC14 Admin Add a New Menu",
+              "fullTitle": "TC14AdminAddNewMenu TC14 Admin Add a New Menu",
+              "timedOut": false,
+              "duration": 2574,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`a[href=\"/Order/ItemIndex\"]`)).click();\n        await driver.findElement(By.css(`a[href=\"/Order/AddItem\"]`)).click();\n        await driver.findElement(By.css(`#ItemName`)).sendKeys(\"13 - Green Tea\");\n        await driver.findElement(By.css(`#ItemPrice`)).clear(\"\");\n        await driver.findElement(By.css(`#ItemPrice`)).sendKeys(\"5.00\");\n        await driver.findElement(By.css(`input[value=\"Create\"]`)).click();\n        await driver.findElement(By.css(`div[class=\"container body-content\"] div a`)).click();\n        /*         await driver.sleep(500);  */\n    //assert\n    let todoText = await driver.findElement(By.css(\"body > div:nth-child(2) > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(14) > td:nth-child(2)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"13 - Green Tea\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC14AdminAddNewMenu.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('body > div:nth-child(2) > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(14) > td:nth-child(2)'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('body > div:nth-child(2) > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(14) > td:nth-child(2)'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n            //    await driver.quit();",
+              "err": {},
+              "uuid": "7d87d71a-d13b-4699-8311-7aa94fcd7de6",
+              "parentUUID": "81efc539-4106-48ae-b426-4f95679ace58",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7d87d71a-d13b-4699-8311-7aa94fcd7de6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2574,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "dfbfa83d-f502-486f-b025-29d89f1ddba5",
+          "title": "TC15AdminCreateNewCustomer",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC13-20.js",
+          "file": "\\test\\TC13-20.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC15AdminCreateNewCustomer\"",
+              "fullTitle": "TC15AdminCreateNewCustomer \"after each\" hook in \"TC15AdminCreateNewCustomer\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "9914fa88-a1a7-4a4f-a638-c0e2634f78af",
+              "parentUUID": "dfbfa83d-f502-486f-b025-29d89f1ddba5",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC15 Admin Create a New Customer",
+              "fullTitle": "TC15AdminCreateNewCustomer TC15 Admin Create a New Customer",
+              "timedOut": false,
+              "duration": 2152,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`a[href=\"/Order/CustomerIndex\"]`)).click();\n        await driver.findElement(By.css(`a[href=\"/User/AddorEdit\"]`)).click();\n        await driver.findElement(By.css(`#CustomerName`)).sendKeys(\"Customer Z\");\n        await driver.findElement(By.css(`input[value=\"Create\"]`)).click();\n        await driver.findElement(By.css(`div[class=\"container body-content\"] div a`)).click();\n        /*         await driver.sleep(500);  */\n    //assert\n    let todoText = await driver.findElement(By.xpath(\"//table[@class='table']/tbody[1]/tr[2]/td[1]\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Customer Z\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC15AdminCreateNewCustomer.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('div[class=\"container body-content\"] h2'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('div[class=\"container body-content\"] h2'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n           //     await driver.quit();",
+              "err": {},
+              "uuid": "577c19d0-edd2-4d97-81ad-35ad29a2a717",
+              "parentUUID": "dfbfa83d-f502-486f-b025-29d89f1ddba5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "577c19d0-edd2-4d97-81ad-35ad29a2a717"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2152,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "286be53e-c0c0-48a1-9f68-c0976d004c57",
+          "title": "TC16AdminAddOrder",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC13-20.js",
+          "file": "\\test\\TC13-20.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC16AdminAddOrder\"",
+              "fullTitle": "TC16AdminAddOrder \"after each\" hook in \"TC16AdminAddOrder\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "570c0767-8b8e-46a0-b0a2-c04133aec438",
+              "parentUUID": "286be53e-c0c0-48a1-9f68-c0976d004c57",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC16 Admin Add Order",
+              "fullTitle": "TC16AdminAddOrder TC16 Admin Add Order",
+              "timedOut": false,
+              "duration": 2228,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#Customer`)).click();\n        await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer Z\");\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n       // await driver.findElement(By.css(`#btnCheckOut`)).click();       \n      \n        /*         await driver.sleep(500);  */\n    //assert\n    let todoText = await driver.findElement(By.css(\"body > div:nth-child(2) > div:nth-child(8) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC16AdminAddOrderAndCheckout.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('.modal-title'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('.modal-title'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n             //   await driver.quit();",
+              "err": {},
+              "uuid": "a3599894-51bb-472c-bab1-37141437257c",
+              "parentUUID": "286be53e-c0c0-48a1-9f68-c0976d004c57",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a3599894-51bb-472c-bab1-37141437257c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2228,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "3faf4d12-ffa3-4540-83fd-ee0fbda75538",
+          "title": "TC17AdminAdd2OrdersAndCheckout",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC13-20.js",
+          "file": "\\test\\TC13-20.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC17AdminAdd2OrdersAndCheckout\"",
+              "fullTitle": "TC17AdminAdd2OrdersAndCheckout \"after each\" hook in \"TC17AdminAdd2OrdersAndCheckout\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "c5666f48-1c17-4dbe-9941-99f779a7b65e",
+              "parentUUID": "3faf4d12-ffa3-4540-83fd-ee0fbda75538",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC17 Admin Add 2 Orders",
+              "fullTitle": "TC17AdminAdd2OrdersAndCheckout TC17 Admin Add 2 Orders",
+              "timedOut": false,
+              "duration": 2639,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#Customer`)).click();\n        await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer Z\");\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"2 - Oh my HOT!! Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"2\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n      \n    //assert\n    let todoText = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(6) > table:nth-child(2) > tr:nth-child(2) > td:nth-child(6)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"17.80\"); \n    let todoText2 = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(6) > table:nth-child(2) > tr:nth-child(3) > td:nth-child(6)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText2,\"37.60\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC17AdminAdd2OrdersAndCheckout.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('.modal-title'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('.modal-title'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n         //       await driver.quit();",
+              "err": {},
+              "uuid": "568d408b-2030-49c7-933f-28d7c544b485",
+              "parentUUID": "3faf4d12-ffa3-4540-83fd-ee0fbda75538",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "568d408b-2030-49c7-933f-28d7c544b485"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2639,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "b16bbdae-f46a-4532-9c68-98b655935f0e",
+          "title": "TC18AdminAddOrderDiscount",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC13-20.js",
+          "file": "\\test\\TC13-20.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC18AdminAddOrderDiscount\"",
+              "fullTitle": "TC18AdminAddOrderDiscount \"after each\" hook in \"TC18AdminAddOrderDiscount\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "e91fe67a-194c-4c10-be9d-cc9bd3020a53",
+              "parentUUID": "b16bbdae-f46a-4532-9c68-98b655935f0e",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC18 Admin Add Order Discount",
+              "fullTitle": "TC18AdminAddOrderDiscount TC18 Admin Add Order Discount",
+              "timedOut": false,
+              "duration": 2121,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#Customer`)).click();\n        await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer Z\");\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n        await driver.findElement(By.css(`#txtDiscount`)).clear(\"\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"4\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n      \n    //assert\n    let todoText = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(6) > table:nth-child(2) > tr:nth-child(2) > td:nth-child(6)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"13.80\"); \n    \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC18AdminAddOrderDiscountAndCheckout.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('.modal-title'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('.modal-title'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n            //    await driver.quit();",
+              "err": {},
+              "uuid": "7a238158-e34d-41b0-888c-9fef5c817b8f",
+              "parentUUID": "b16bbdae-f46a-4532-9c68-98b655935f0e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7a238158-e34d-41b0-888c-9fef5c817b8f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2121,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "60e7ca64-8630-4c52-afc7-f97cfef52498",
+          "title": "TC19AdminAdd2OrdersDiscount",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC13-20.js",
+          "file": "\\test\\TC13-20.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC19AdminAdd2OrdersDiscount\"",
+              "fullTitle": "TC19AdminAdd2OrdersDiscount \"after each\" hook in \"TC19AdminAdd2OrdersDiscount\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "66594b59-fabf-4961-9873-38351bc3be59",
+              "parentUUID": "60e7ca64-8630-4c52-afc7-f97cfef52498",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC19 Admin Add 2 Orders, Discount",
+              "fullTitle": "TC19AdminAdd2OrdersDiscount TC19 Admin Add 2 Orders, Discount",
+              "timedOut": false,
+              "duration": 2740,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#Customer`)).click();\n        await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer Z\");\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n        await driver.findElement(By.css(`#txtDiscount`)).clear(\"\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"4\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"2 - Oh my HOT!! Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"2\");\n        await driver.findElement(By.css(`#txtDiscount`)).clear(\"\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"5\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n      \n    //assert\n    let todoText = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(6) > table:nth-child(2) > tr:nth-child(2) > td:nth-child(6)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"13.80\"); \n    let todoText2 = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(6) > table:nth-child(2) > tr:nth-child(3) > td:nth-child(6)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText2,\"32.60\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC19AdminAdd2OrdersDiscount.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('.modal-title'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('.modal-title'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n           //     await driver.quit();",
+              "err": {},
+              "uuid": "d5214b18-2371-4c19-b497-c6e3a2efcb28",
+              "parentUUID": "60e7ca64-8630-4c52-afc7-f97cfef52498",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d5214b18-2371-4c19-b497-c6e3a2efcb28"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2740,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "a6d4c0ce-a34f-4d7c-a428-7277a3c33066",
+          "title": "TC20AdminAdd3OrdersWith3Quantities",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC13-20.js",
+          "file": "\\test\\TC13-20.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC20AdminAdd3OrdersWith3Quantities\"",
+              "fullTitle": "TC20AdminAdd3OrdersWith3Quantities \"after each\" hook in \"TC20AdminAdd3OrdersWith3Quantities\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "384e33b9-1f26-4806-8a73-6377a02a4d6e",
+              "parentUUID": "a6d4c0ce-a34f-4d7c-a428-7277a3c33066",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC20 Admin Add 3 Orders With 3 Quantities",
+              "fullTitle": "TC20AdminAdd3OrdersWith3Quantities TC20 Admin Add 3 Orders With 3 Quantities",
+              "timedOut": false,
+              "duration": 3376,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#Customer`)).click();\n        await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer Z\");\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"2 - Oh my HOT!! Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"2\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"3 - Nostalgic Japanese Soy Chicken Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"3\");\n        await driver.findElement(By.css(`#txtDiscount`)).clear(\"\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"20\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n      \n    //assert\n    let todoText = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(6) > table:nth-child(2) > tr:nth-child(2) > td:nth-child(6)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"17.80\"); \n    let todoText2 = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(6) > table:nth-child(2) > tr:nth-child(3) > td:nth-child(6)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText2,\"37.60\"); \n    let todoText3 = await driver.findElement(By.css(\"body > div:nth-child(2) > fieldset:nth-child(6) > table:nth-child(2) > tr:nth-child(4) > td:nth-child(6)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText3,\"31.00\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC20AdminAdd3OrdersWith3Quantities.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('.modal-title'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('.modal-title'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };            await driver.findElement(By.css(`#logoutForm`)).click();\n                await driver.quit();",
+              "err": {},
+              "uuid": "daf36796-a80c-4c97-8cec-34b1b93960b8",
+              "parentUUID": "a6d4c0ce-a34f-4d7c-a428-7277a3c33066",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "daf36796-a80c-4c97-8cec-34b1b93960b8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3376,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "15e42034-503b-41b6-b883-89e6fa081190",
+          "title": "TC21AdminDidnotReturnMoneyToCustomer",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC21-25.js",
+          "file": "\\test\\TC21-25.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC21AdminDidnotReturnMoneyToCustomer\"",
+              "fullTitle": "TC21AdminDidnotReturnMoneyToCustomer \"after each\" hook in \"TC21AdminDidnotReturnMoneyToCustomer\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "632e22f9-84d4-407d-9bf8-a0ec85d99d62",
+              "parentUUID": "15e42034-503b-41b6-b883-89e6fa081190",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC21 Admin Did not Return Money To Customer",
+              "fullTitle": "TC21AdminDidnotReturnMoneyToCustomer TC21 Admin Did not Return Money To Customer",
+              "timedOut": false,
+              "duration": 5184,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n            await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n            await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n            await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n            await driver.findElement(By.css(`#Customer`)).click();\n            await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer A\");\n            await driver.findElement(By.css(`#Item`)).click();\n            await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n            await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n            await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n            await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n            await driver.findElement(By.css(`#btnAddToList`)).click();\n            await driver.findElement(By.css(`#Item`)).click();\n            await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"2 - Oh my HOT!! Tonkotsu Chashu Ramen\");\n            await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n            await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"2\");\n            await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n            await driver.findElement(By.css(`#btnAddToList`)).click();\n            await driver.findElement(By.css(`#Item`)).click();\n            await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"3 - Nostalgic Japanese Soy Chicken Ramen\");\n            await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n            await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"3\");\n            await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n            await driver.findElement(By.css(`#btnAddToList`)).click();\n            await driver.findElement(By.css(`#btnCheckOut`)).click();  \n            await driver.findElement(By.css(`#txtPaymentAmount`)).clear(\"\");\n            await driver.findElement(By.css(`#txtPaymentAmount`)).sendKeys(\"2000.00\");\n            await driver.findElement(By.css(`#btnPayment`)).isEnabled(false);  \n            \n            try{\n            //await driver.findElement(By.linkText('Item is added Successfully')).click();\n            // Wait for the alert to be displayed\n            await driver.wait(until.alertIsPresent());\n                // Store the alert in a variable\n            let alert = await driver.switchTo().alert();\n                //Store the alert text in a variable\n            let alertText = await alert.getText();\n                //Press the OK button\n            await alert.accept();\n        }catch(err2) {\n            console.log(\"Error2: \" + err2);\n        };\n           //assert\n        let todoText = await driver.findElement(By.css(\"#txtBalance\")).getText().then(function(value){\n            return value\n        });\n        assert.strictEqual(todoText,\"\"); \n       // await driver.findElement(By.css(`a[href=\"/Order/OrderIndex\"]`)).click(); \n        await driver.takeScreenshot().then(\n            function (image) {\n                require('fs').writeFileSync('./result/TC21AdminDidnotReturnMoneyToCustomer.png', image, 'base64')\n            });\n                try {\n                     var _height = 0, _width = 0, _left = 0, _top = 0;\n                     driver.findElement(By.css('.modal-title'))\n                .getLocation().then(location => {\n                    _left = location.x;\n                    _top = location.y;\n                });\n            driver.findElement(By.css('.modal-title'))\n                .getSize().then(size => {\n                    _width = size.width;\n                    _height = size.height;\n                });               \n            (async function () {\n                         await driver.sleep(5000);\n                         sharp('image_li6.png')\n                    .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                    .toFile('image_li6_crop.png')\n                    .then(function (new_file_info) {\n                        console.log(\"Image cropped and saved\");\n                    })\n                    .catch(function (err) {\n                        if (err) console.log(err);\n                    });\n                     }());\n        }\n        catch (err) {\n            console.log(\"Error: \" + err);\n        };\n        await driver.findElement(By.xpath(`//button[@id=\"btnClose\"]`)).click();  \n        await driver.sleep(500);\n        await driver.findElement(By.css(`#logoutForm`)).click();\n                //    await driver.quit();",
+              "err": {},
+              "uuid": "a706707b-d003-4d9b-8e0c-bd171b5d0dc0",
+              "parentUUID": "15e42034-503b-41b6-b883-89e6fa081190",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a706707b-d003-4d9b-8e0c-bd171b5d0dc0"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5184,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "88c5a432-15ec-4083-be81-0a3b0b75a226",
+          "title": "TC22AdminReturnMoneyLessThanChangeAmount",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC21-25.js",
+          "file": "\\test\\TC21-25.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC22AdminReturnMoneyLessThanChangeAmount\"",
+              "fullTitle": "TC22AdminReturnMoneyLessThanChangeAmount \"after each\" hook in \"TC22AdminReturnMoneyLessThanChangeAmount\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "c23996af-50a6-4050-ba5e-2b01157bcaba",
+              "parentUUID": "88c5a432-15ec-4083-be81-0a3b0b75a226",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC22 Admin Return Money Less Than Change Amount",
+              "fullTitle": "TC22AdminReturnMoneyLessThanChangeAmount TC22 Admin Return Money Less Than Change Amount",
+              "timedOut": false,
+              "duration": 5215,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n            await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n            await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n            await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n            await driver.findElement(By.css(`#Customer`)).click();\n            await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer B\");\n            await driver.findElement(By.css(`#Item`)).click();\n            await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n            await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n            await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n            await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n            await driver.findElement(By.css(`#btnAddToList`)).click();\n            await driver.findElement(By.css(`#Item`)).click();\n            await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"2 - Oh my HOT!! Tonkotsu Chashu Ramen\");\n            await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n            await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"2\");\n            await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n            await driver.findElement(By.css(`#btnAddToList`)).click();\n            await driver.findElement(By.css(`#Item`)).click();\n            await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"3 - Nostalgic Japanese Soy Chicken Ramen\");\n            await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n            await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"3\");\n            await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n            await driver.findElement(By.css(`#btnAddToList`)).click();\n            await driver.findElement(By.css(`#btnCheckOut`)).click();   \n            await driver.findElement(By.css(`#txtPaymentAmount`)).clear(\"\");\n            await driver.findElement(By.css(`#txtPaymentAmount`)).sendKeys(\"2000.00\");\n            await driver.findElement(By.css(`#txtReturnTotal`)).sendKeys(\"19.00\");\n            await driver.findElement(By.css(`#btnPayment`)).isEnabled(false); \n            \n          \n        //assert\n        let todoText = await driver.findElement(By.css(\"#txtBalance\")).getText().then(function(value){\n            return value\n        });\n        assert.strictEqual(todoText,\"\"); \n        await driver.takeScreenshot().then(\n            function (image) {\n                require('fs').writeFileSync('./result/TC22AdminReturnMoneyLessThanChangeAmount.png', image, 'base64')\n            });\n                try {\n                     var _height = 0, _width = 0, _left = 0, _top = 0;\n                     driver.findElement(By.css('.modal-title'))\n                .getLocation().then(location => {\n                    _left = location.x;\n                    _top = location.y;\n                });\n            driver.findElement(By.css('.modal-title'))\n                .getSize().then(size => {\n                    _width = size.width;\n                    _height = size.height;\n                });               \n            (async function () {\n                         await driver.sleep(5000);\n                         sharp('image_li6.png')\n                    .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                    .toFile('image_li6_crop.png')\n                    .then(function (new_file_info) {\n                        console.log(\"Image cropped and saved\");\n                    })\n                    .catch(function (err) {\n                        if (err) console.log(err);\n                    });\n                     }());\n        }\n        catch (err) {\n            console.log(\"Error: \" + err);\n        };\n        await driver.findElement(By.xpath(`//button[@id=\"btnClose\"]`)).click();  \n        await driver.sleep(500);\n        await driver.findElement(By.css(`#logoutForm`)).click();\n               //     await driver.quit();",
+              "err": {},
+              "uuid": "3a6383c4-be4d-463c-a62d-60c88685a865",
+              "parentUUID": "88c5a432-15ec-4083-be81-0a3b0b75a226",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3a6383c4-be4d-463c-a62d-60c88685a865"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5215,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "7a6f095b-130c-44ed-827b-ebfa9761a6e7",
+          "title": "TC23AdminReturnMoneyMoreThanChangeAmount",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC21-25.js",
+          "file": "\\test\\TC21-25.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC23AdminReturnMoneyMoreThanChangeAmount\"",
+              "fullTitle": "TC23AdminReturnMoneyMoreThanChangeAmount \"after each\" hook in \"TC23AdminReturnMoneyMoreThanChangeAmount\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "b56cfee8-2e00-43df-82ec-c63b6c3f7e83",
+              "parentUUID": "7a6f095b-130c-44ed-827b-ebfa9761a6e7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC23 Admin Return Money More Than Change Amount",
+              "fullTitle": "TC23AdminReturnMoneyMoreThanChangeAmount TC23 Admin Return Money More Than Change Amount",
+              "timedOut": false,
+              "duration": 4169,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#Customer`)).click();\n        await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer C\");\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"2 - Oh my HOT!! Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"2\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"3 - Nostalgic Japanese Soy Chicken Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"3\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#btnCheckOut`)).click();   \n        await driver.findElement(By.css(`#txtPaymentAmount`)).clear(\"\");\n        await driver.findElement(By.css(`#txtPaymentAmount`)).sendKeys(\"2000.00\");\n        await driver.findElement(By.css(`#txtReturnTotal`)).sendKeys(\"4000.00\");\n        await driver.findElement(By.css(`#btnPayment`)).isEnabled(false); \n      \n    //assert\n    let todoText = await driver.findElement(By.css(\"#txtBalance\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC23AdminReturnMoneyMoreThanChangeAmount.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('.modal-title'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('.modal-title'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.xpath(`//button[@id=\"btnClose\"]`)).click();  \n    await driver.sleep(500);\n    await driver.findElement(By.css(`#logoutForm`)).click();\n        //        await driver.quit();",
+              "err": {},
+              "uuid": "a7178530-0619-4c96-baf5-f2f2ffd46622",
+              "parentUUID": "7a6f095b-130c-44ed-827b-ebfa9761a6e7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a7178530-0619-4c96-baf5-f2f2ffd46622"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4169,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "b8fe7265-6db5-400c-ab78-d2480439dea8",
+          "title": "TC24AdminClickonPaymentbuttonSuccess",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC21-25.js",
+          "file": "\\test\\TC21-25.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC24AdminClickonPaymentbuttonSuccess\"",
+              "fullTitle": "TC24AdminClickonPaymentbuttonSuccess \"after each\" hook in \"TC24AdminClickonPaymentbuttonSuccess\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "baed66f7-713f-435e-9aa5-6df47354fac8",
+              "parentUUID": "b8fe7265-6db5-400c-ab78-d2480439dea8",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC24 Admin Click on Payment button Success",
+              "fullTitle": "TC24AdminClickonPaymentbuttonSuccess TC24 Admin Click on Payment button Success",
+              "timedOut": false,
+              "duration": 5357,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#Customer`)).click();\n        await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer D\");\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"2 - Oh my HOT!! Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"2\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"3 - Nostalgic Japanese Soy Chicken Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"3\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#btnCheckOut`)).click();   \n        await driver.findElement(By.css(`#txtPaymentAmount`)).clear(\"\");\n        await driver.findElement(By.css(`#txtPaymentAmount`)).sendKeys(\"106.40\");\n        await driver.findElement(By.css(`#txtReturnTotal`)).sendKeys(\"0.00\");\n        await driver.findElement(By.css(`#btnPayment`)).isEnabled(true); \n        await driver.findElement(By.css(`#btnPayment`)).click();\n        try{\n            await driver.sleep(500);\n           await driver.findElement(By.linkText('Order has been Successfully Placed.')).click();\n            // Wait for the alert to be displayed\n            await driver.wait(until.alertIsPresent());\n                // Store the alert in a variable\n            let alert = await driver.switchTo().alert();\n                //Store the alert text in a variable\n            let alertText = await alert.getText();\n                //Press the OK button\n            await alert.accept();\n        }catch(err2) {\n            console.log(\"Error2: \" + err2);\n        };\n        await driver.sleep(1000);\n        await driver.findElement(By.css(`a[href=\"/Order/OrderIndex\"]`)).click();\n      \n    //assert\n    let todoText = await driver.findElement(By.css(\"tbody tr:nth-child(2) td:nth-child(5)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"106.40\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC24AdminClickonPaymentbuttonSuccess.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('.modal-title'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('.modal-title'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n           //     await driver.quit();",
+              "err": {},
+              "uuid": "3a3c2ed9-daec-462b-8ba0-261fe396c5e6",
+              "parentUUID": "b8fe7265-6db5-400c-ab78-d2480439dea8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3a3c2ed9-daec-462b-8ba0-261fe396c5e6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5357,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "91ef5eac-0ec8-4cbb-9e96-8cc219345c04",
+          "title": "TC25AfterPaymentSuccessClickonOrderlistPage",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC21-25.js",
+          "file": "\\test\\TC21-25.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC25AfterPaymentSuccessClickonOrderlistPage\"",
+              "fullTitle": "TC25AfterPaymentSuccessClickonOrderlistPage \"after each\" hook in \"TC25AfterPaymentSuccessClickonOrderlistPage\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "98e60204-d0b3-45be-b160-4456307b42da",
+              "parentUUID": "91ef5eac-0ec8-4cbb-9e96-8cc219345c04",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC25 After Payment Success Click on Order list Page",
+              "fullTitle": "TC25AfterPaymentSuccessClickonOrderlistPage TC25 After Payment Success Click on Order list Page",
+              "timedOut": false,
+              "duration": 7449,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#Customer`)).click();\n        await driver.findElement(By.css(`select[name=\"Customer\"]`)).sendKeys(\"Customer E\");\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"1 - Signature Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"1\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"2 - Oh my HOT!! Tonkotsu Chashu Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"2\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#Item`)).click();\n        await driver.findElement(By.css(`select[name=\"Item\"]`)).sendKeys(\"3 - Nostalgic Japanese Soy Chicken Ramen\");\n        await driver.findElement(By.css(`#txtQuantity`)).clear(\"\");\n        await driver.findElement(By.css(`#txtQuantity`)).sendKeys(\"4\");\n        await driver.findElement(By.css(`#txtDiscount`)).sendKeys(\"0\");\n        await driver.findElement(By.css(`#btnAddToList`)).click();\n        await driver.findElement(By.css(`#btnCheckOut`)).click();   \n        await driver.findElement(By.css(`#txtPaymentAmount`)).clear(\"\");\n        await driver.findElement(By.css(`#txtPaymentAmount`)).sendKeys(\"123.40\");\n        await driver.findElement(By.css(`#txtReturnTotal`)).sendKeys(\"0.00\");\n        await driver.findElement(By.css(`#btnPayment`)).isEnabled(true); \n        await driver.findElement(By.css(`#btnPayment`)).click();   \n        await driver.sleep(1000);\n/*             try{\n        await driver.findElement(By.linkText('Order has been Successfully Placed')).click();\n        // Wait for the alert to be displayed\n        await driver.wait(until.alertIsPresent());\n            // Store the alert in a variable\n        let alert = await driver.switchTo().alert();\n            //Store the alert text in a variable\n        let alertText = await alert.getText();\n            //Press the OK button\n        await alert.accept();\n    }catch(err2) {\n        console.log(\"Error2: \" + err2);\n    }; */\n    let alert = await driver.switchTo().alert();\n    await alert.accept();\n    await driver.sleep(1000);\n    await driver.findElement(By.css(`a[href=\"/Order/OrderIndex\"]`)).click();   \n    //assert\n    let todoText = await driver.findElement(By.css(\"tbody tr:nth-child(2) td:nth-child(5)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"123.40\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC25AfterPaymentSuccessClickonOrderlistPage.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('div[class=\"container body-content\"] h2'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('div[class=\"container body-content\"] h2'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n                await driver.quit();",
+              "err": {},
+              "uuid": "25fb450d-6221-41b4-bb64-609187c139f7",
+              "parentUUID": "91ef5eac-0ec8-4cbb-9e96-8cc219345c04",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "25fb450d-6221-41b4-bb64-609187c139f7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7449,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "35ddb50e-ab1c-4a0c-b81b-9b8936ef5201",
+          "title": "TC26AdminDeleteCustomer",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC26-28.js",
+          "file": "\\test\\TC26-28.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC26AdminDeleteCustomer\"",
+              "fullTitle": "TC26AdminDeleteCustomer \"after each\" hook in \"TC26AdminDeleteCustomer\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "cc7c0599-1907-476a-b002-7b20840d6e7d",
+              "parentUUID": "35ddb50e-ab1c-4a0c-b81b-9b8936ef5201",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC26 Admin Delete Customer",
+              "fullTitle": "TC26AdminDeleteCustomer TC26 Admin Delete Customer",
+              "timedOut": false,
+              "duration": 2211,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n            await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n            await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n            await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n            await driver.findElement(By.css(`a[href=\"/Order/CustomerIndex\"]`)).click();\n            await driver.findElement(By.xpath(`//tbody/tr[2]/td[3]/a[1]`)).click();\n            await driver.findElement(By.css(`input[value=\"Delete\"]`)).click();\n           \n          \n        //assert\n        let todoText = await driver.findElement(By.css(\"tbody tr:nth-child(2) td:nth-child(1)\")).getText().then(function(value){\n            return value\n        });\n        assert.strictEqual(todoText,\"Customer E\"); \n        await driver.takeScreenshot().then(\n            function (image) {\n                require('fs').writeFileSync('./result/TC26AdminDeleteCustomer.png', image, 'base64')\n            });\n                try {\n                     var _height = 0, _width = 0, _left = 0, _top = 0;\n                     driver.findElement(By.css('div[class=\"container body-content\"] h2'))\n                .getLocation().then(location => {\n                    _left = location.x;\n                    _top = location.y;\n                });\n            driver.findElement(By.css('div[class=\"container body-content\"] h2'))\n                .getSize().then(size => {\n                    _width = size.width;\n                    _height = size.height;\n                });               \n            (async function () {\n                         await driver.sleep(5000);\n                         sharp('image_li6.png')\n                    .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                    .toFile('image_li6_crop.png')\n                    .then(function (new_file_info) {\n                        console.log(\"Image cropped and saved\");\n                    })\n                    .catch(function (err) {\n                        if (err) console.log(err);\n                    });\n                     }());\n        }\n        catch (err) {\n            console.log(\"Error: \" + err);\n        };\n        await driver.findElement(By.css(`#logoutForm`)).click();\n                  //  await driver.quit();",
+              "err": {},
+              "uuid": "d899ec88-3e05-4a8c-853c-7774871d83da",
+              "parentUUID": "35ddb50e-ab1c-4a0c-b81b-9b8936ef5201",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d899ec88-3e05-4a8c-853c-7774871d83da"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2211,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "47917bcf-ae6e-43f8-8b4b-988301cceaca",
+          "title": "TC27AdminDeleteMenu",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC26-28.js",
+          "file": "\\test\\TC26-28.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC27AdminDeleteMenu\"",
+              "fullTitle": "TC27AdminDeleteMenu \"after each\" hook in \"TC27AdminDeleteMenu\"",
+              "timedOut": false,
+              "duration": 0,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "746b10a5-96b6-43b6-817c-8c3fbb74fcaa",
+              "parentUUID": "47917bcf-ae6e-43f8-8b4b-988301cceaca",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC27 Admin Delete Menu",
+              "fullTitle": "TC27AdminDeleteMenu TC27 Admin Delete Menu",
+              "timedOut": false,
+              "duration": 1594,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`a[href=\"/Order/ItemIndex\"]`)).click();\n        await driver.findElement(By.xpath(`//tbody/tr[14]/td[3]/a[1]`)).click();\n        await driver.findElement(By.css(`input[value=\"Delete\"]`)).click();\n    //assert\n    let todoText = await driver.findElement(By.css(\"body > div:nth-child(2) > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(13) > td:nth-child(2)\")).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"12 - Coke Zero Sugar\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC27AdminDeleteMenu.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css('body > div:nth-child(2) > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(13) > td:nth-child(2)'))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css('body > div:nth-child(2) > table:nth-child(3) > tbody:nth-child(1) > tr:nth-child(13) > td:nth-child(2)'))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };\n    await driver.findElement(By.css(`#logoutForm`)).click();\n         //       await driver.quit();",
+              "err": {},
+              "uuid": "7585db75-8ded-4efe-95ed-8e6ac7c159aa",
+              "parentUUID": "47917bcf-ae6e-43f8-8b4b-988301cceaca",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7585db75-8ded-4efe-95ed-8e6ac7c159aa"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1594,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "f2ebd21c-2f1b-47dc-a6e6-c2e5dbf7a3c6",
+          "title": "TC28Logout",
+          "fullFile": "C:\\AutomateOnlinePetStore\\selenium\\test\\TC26-28.js",
+          "file": "\\test\\TC26-28.js",
+          "beforeHooks": [],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"TC28Logout\"",
+              "fullTitle": "TC28Logout \"after each\" hook in \"TC28Logout\"",
+              "timedOut": false,
+              "duration": 1,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(this.currentTest.state=='failed'){\n    let imageFileName = this.currentTest.title + '.jpeg';\n    driver.takeScreenshot().then(\n      function(image){\n        require('fs').writeFileSync('./screenshots/' + imageFileName,image,'base64')\n      } \n    )\n    addContext(this, 'Following comes the failed test image')\n    addContext(this,'../screenshots/' + imageFileName)\n}",
+              "err": {},
+              "uuid": "f6dcbc0f-8411-4d92-bfb7-a2c9c0da1dd5",
+              "parentUUID": "f2ebd21c-2f1b-47dc-a6e6-c2e5dbf7a3c6",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "TC28Logout",
+              "fullTitle": "TC28Logout TC28Logout",
+              "timedOut": false,
+              "duration": 1379,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get(\"http://localhost:8044/User/AdminLogin\");\n        await driver.findElement(By.css(`#AdminUsername`)).sendKeys(\"Tananya1\");\n        await driver.findElement(By.css(`#AdminPassword`)).sendKeys(\"Tanya123\");\n        await driver.findElement(By.css(`input[value=\"Login\"]`)).click();\n        await driver.findElement(By.css(`#logoutForm`)).click();\n    //assert\n    let todoText = await driver.findElement(By.css(`div[class=\"container body-content\"] h2`)).getText().then(function(value){\n        return value\n    });\n    assert.strictEqual(todoText,\"Admin Login\"); \n    await driver.takeScreenshot().then(\n        function (image) {\n            require('fs').writeFileSync('./result/TC28Logout.png', image, 'base64')\n        });\n            try {\n                 var _height = 0, _width = 0, _left = 0, _top = 0;\n                 driver.findElement(By.css(`div[class=\"container body-content\"] h2`))\n            .getLocation().then(location => {\n                _left = location.x;\n                _top = location.y;\n            });\n        driver.findElement(By.css(`div[class=\"container body-content\"] h2`))\n            .getSize().then(size => {\n                _width = size.width;\n                _height = size.height;\n            });               \n        (async function () {\n                     await driver.sleep(5000);\n                     sharp('image_li6.png')\n                .extract({ left: parseInt(_left), top: parseInt(_top), width: parseInt(_width), height: parseInt(_height) })\n                .toFile('image_li6_crop.png')\n                .then(function (new_file_info) {\n                    console.log(\"Image cropped and saved\");\n                })\n                .catch(function (err) {\n                    if (err) console.log(err);\n                });\n                 }());\n    }\n    catch (err) {\n        console.log(\"Error: \" + err);\n    };           \n                await driver.quit();",
+              "err": {},
+              "uuid": "bec7df2d-301e-4b1e-abe1-dce999de27a8",
+              "parentUUID": "f2ebd21c-2f1b-47dc-a6e6-c2e5dbf7a3c6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bec7df2d-301e-4b1e-abe1-dce999de27a8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1379,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "8.4.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "Test_result",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./report-result",
+        "reportFilename": "Test_result"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

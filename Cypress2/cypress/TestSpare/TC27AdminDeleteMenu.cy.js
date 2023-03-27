@@ -1,0 +1,16 @@
+describe('TC27AdminDeleteMenu', () => {
+  it('TC27 Admin Delete Menu', () => {
+    cy.visit('http://localhost:8044/User/AdminLogin')
+    cy.get('#AdminUsername').type('Tananya1')
+    cy.get('#AdminPassword').type('Tanya123')
+    cy.get(`input[value="Login"]`).click()
+    cy.get(`a[href="/Order/ItemIndex"]`).click()
+    cy.get(':nth-child(14) > :nth-child(4) > a').click()
+    cy.get(`input[value="Delete"]`).click()
+    cy.get(':nth-child(13) > :nth-child(2)')
+    .click.toString(`12 - Coke Zero Sugar`)
+    cy.viewport(1350, 700)
+    cy.screenshot()
+//    cy.get(`#logoutForm`).click()
+  })
+})
