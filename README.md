@@ -13,5 +13,13 @@ Data: results from running automation test tools
 
 
 This video is speed X4 of the actual video.
-https://user-images.githubusercontent.com/86545991/228094954-665bbcab-f999-431e-8139-4ffc3c0c78e1.mp4
+.
+
+
+
+
+
+
+
+https://user-images.githubusercontent.com/86545991/228099023-d34d4a1c-4f22-40eb-9b7a-74f91c9f10a3.mp4
 
